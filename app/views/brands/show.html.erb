@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+
+<% if current_user.present? %>
+  <% if current_user.issuperadmin? || current_user.isadmin? %>
+  <p>
+    <strong>Name:</strong>
+    <%= @brand.name %>
+  </p>
+
+  <p>
+    <strong>Added By User:</strong>
+    <%= @brand.user.first_name %> <%= @brand.user.last_name %>
+  </p>
+
+  <%= link_to "Edit", edit_brand_path(@brand) %> |
+  <%= link_to "Back", brands_path %>
+
+  <% end %>
+<% end %>
+
+
+<br><br>
+<table>
+  <tr>
+    <th>Brand</th>
+    <th>Model</th>
+    <th>fuel</th>
+    <th>plate_number</th>
+    <th>color</th>
+    <th>mileage</th>
+  </tr>
+
+    <% @brand.cars.each do |car| %>
+      <% if car.persisted? %>
+        <tr>
+        <td><%= car.brand.name %></td>
+        <td><%= car.model %></td>
+        <td><%= car.fuel %></td>
+        <td><%= car.plate_number %></td>
+        <td><%= car.color %></td>
+        <td><%= car.mileage %></td>
+        </tr>
+      <% end %>
+    <% end %>
+</table>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Payment type:</strong>
+  <%= @offer.payment_type %>
+</p>
+
+<p>
+  <strong>Offer amount:</strong>
+  <%= @offer.offer_amount %>
+</p>
+
+<p>
+  <strong>Source of funds:</strong>
+  <%= @offer.source_of_funds %>
+</p>
+
+
+<% if current_user.present? %>
+  <% if current_user.issuperadmin? || current_user.isadmin? %>
+    <%= link_to "Edit", edit_car_offer_path(@offer.car, @offer) %> |
+    <%= link_to "Back", car_offers_path %>
+  <% end %>
+<% end %>

@@ -1,1 +1,53 @@
-<p>test</p>
+<h1>Latest Listing</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>brand</th>
+      <th>year</th>
+      <th>model</th>
+      <th>fuel</th>
+      <th>plate_number</th>
+      <th>color</th>
+      <th>mileage</th>
+      <th>price</th>
+      <th>deadline</th>
+      <th>warehouse</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cars.each do |car| %>
+      <tr>
+        <td><%= car.id %></td>
+        <td><%= car.brand %></td>
+        <td><%= car.year %></td>
+        <td><%= car.model %></td>
+        <td><%= car.fuel %></td>
+        <td><%= car.plate_number %></td>
+        <td><%= car.color %></td>
+        <td><%= number_to_currency(car.mileage, precision: 0, :unit => "") %></td>
+        <td><%= number_to_currency(car.price, :unit => "P ", precision: 0) %></td>
+        <td><%= car.deadline %></td>
+        <td><%= car.warehouse %></td>
+        <td><%= link_to "Make Offer", car %></td>
+      </tr>
+    <% end %>
+
+
+  </tbody>
+</table>
+<br><br>
+<h1>View by Brands</h1>
+
+    <% @brands.each do |brand| %>
+       <td><%= link_to brand.name, brand %></td>
+    <% end %>
+
+  <br><br>
+<h1>View by Car Type</h1>
+
+    <% @types.each do |type| %>
+       <td><%= link_to type.name, type %></td>
+    <% end %>

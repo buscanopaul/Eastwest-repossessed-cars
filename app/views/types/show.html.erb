@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+<% if current_user.present? %>
+  <% if current_user.issuperadmin? || current_user.isadmin? %>
+    <p>
+      <strong>Name:</strong>
+      <%= @type.name %>
+    </p>
+
+      <p>
+      <strong>Added By User:</strong>
+      <%= @type.user.first_name %> <%= @type.user.last_name %>
+    </p>
+
+
+    <%= link_to "Edit", edit_type_path(@type) %> |
+    <%= link_to "Back", types_path %>
+  <% end %>
+<% end %>
+
+<br><br>
+<table>
+  <tr>
+    <th>Brand</th>
+    <th>Model</th>
+    <th>fuel</th>
+    <th>plate_number</th>
+    <th>color</th>
+    <th>mileage</th>
+    <th>car type</th>
+  </tr>
+
+    <% @type.cars.each do |car| %>
+      <% if car.persisted? %>
+        <tr>
+        <td><%= car.brand.name %></td>
+        <td><%= car.model %></td>
+        <td><%= car.fuel %></td>
+        <td><%= car.plate_number %></td>
+        <td><%= car.color %></td>
+        <td><%= car.mileage %></td>
+        <td><%= car.type.name %></td>
+        </tr>
+      <% end %>
+    <% end %>
+</table>

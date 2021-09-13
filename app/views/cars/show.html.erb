@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>year:</b>
+  <%= @car.year %>
+</p>
+<p>
+  <b>model:</b>
+  <%= @car.model %>
+</p>
+<p>
+  <b>fuel:</b>
+  <%= @car.fuel %>
+</p>
+<p>
+  <b>plate_number:</b>
+  <%= @car.plate_number %>
+</p>
+<p>
+  <b>color:</b>
+  <%= @car.color %>
+</p>
+<p>
+  <b>mileage:</b>
+  <%= @car.mileage %>
+</p>
+<p>
+  <b>price:</b>
+  <%= @car.price %>
+</p>
+<p>
+  <b>deadline:</b>
+  <%= @car.deadline %>
+</p>
+<p>
+  <b>warehouse:</b>
+  <%= @car.warehouse %>
+</p>
+<p>
+  <b>brand:</b>
+  <%= @car.brand.name %>
+</p>
+<p>
+  <b>type:</b>
+  <%= @car.type.name %>
+</p>
+
+<h2>Offer details</h2>
+<%= render "offers/form", offer: @car.offers.build %>
+
+
+<% if current_user.present? %>
+  <% if current_user.issuperadmin? || current_user.isadmin? %>
+        <%= link_to "Edit", edit_car_path(@car) %> |
+        <%= link_to "Back", cars_path %>
+    <% end %>
+<% end %>

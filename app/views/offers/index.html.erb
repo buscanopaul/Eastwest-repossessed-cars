@@ -1,0 +1,90 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Offers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Reference ID</th>
+      <th>Payment type</th>
+      <th>Offer amount</th>
+      <th>Source of funds</th>
+      <th>note</th>
+      <th>Status</th>
+      <th>brand</th>
+      <th>year</th>
+      <th>model</th>
+      <th>fuel</th>
+      <th>plate_number</th>
+      <th>color</th>
+      <th>mileage</th>
+      <th>price</th>
+      <th>deadline</th>
+      <th>warehouse</th>
+      <th>car type</th>
+      <% if current_user.issuperadmin? || current_user.isadmin? %>
+        <th>user_id</th>
+        <th>Updated By</th>
+        <th>Last Updated</th>
+      <% end %>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @offers.each do |offer| %>
+        <tr>
+          <% if offer.user == current_user %>
+            <td><%= offer.id %></td>
+            <td><%= offer.payment_type %></td>
+            <td><%= offer.offer_amount %></td>
+            <td><%= offer.source_of_funds %></td>
+            <td><%= offer.note %></td>
+            <td><%= offer.status %></td>
+            <td><%= offer.brand %></td>
+            <td><%= offer.car.year %></td>
+            <td><%= offer.car.model %></td>
+            <td><%= offer.car.fuel %></td>
+            <td><%= offer.car.plate_number %></td>
+            <td><%= offer.car.color %></td>
+            <td><%= number_to_currency(offer.car.mileage, precision: 0, :unit => "") %></td>
+            <td><%= number_to_currency(offer.car.price, :unit => "P ", precision: 0) %></td>
+            <td><%= offer.car.deadline %></td>
+            <td><%= offer.car.warehouse %></td>
+            <td><%= offer.car.type.name %></td>
+          <% elsif current_user.issuperadmin? || current_user.isadmin? %>
+            <td><%= offer.id %></td>
+            <td><%= offer.payment_type %></td>
+            <td><%= offer.offer_amount %></td>
+            <td><%= offer.source_of_funds %></td>
+            <td><%= offer.note %></td>
+            <td><%= offer.status %></td>
+            <td><%= offer.brand %></td>
+            <td><%= offer.car.year %></td>
+            <td><%= offer.car.model %></td>
+            <td><%= offer.car.fuel %></td>
+            <td><%= offer.car.plate_number %></td>
+            <td><%= offer.car.color %></td>
+            <td><%= number_to_currency(offer.car.mileage, precision: 0, :unit => "") %></td>
+            <td><%= number_to_currency(offer.car.price, :unit => "P ", precision: 0) %></td>
+            <td><%= offer.car.deadline %></td>
+            <td><%= offer.car.warehouse %></td>
+            <td><%= offer.car.type.name %></td>
+            <td><%= offer.user.email %></td>
+            <td><%= offer.updated_by %></td>
+            <td><%= offer.updated_at.strftime("%-d/%-m/%y: %H:%M %Z") %> </td>
+
+  
+          <% end %>
+          <% if current_user.present? %>
+            <% if current_user.issuperadmin? || current_user.isadmin? %>
+              <td><%= link_to "Edit", edit_car_offer_path(offer.car, offer) %></td>
+              <td><%= link_to "Destroy", [offer.car, offer], :method => :delete, :data => { :confirm => "Are you sure?" } %></td>
+            <% end %>
+          <% end %>
+        </tr>
+  
+    <% end %>
+  </tbody>
+</table>
+

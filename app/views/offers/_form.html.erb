@@ -1,0 +1,48 @@
+<%= form_with(model: [@car, offer], local: true) do |form| %>
+  <div class="field">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Payment Type: </label>
+        </div>
+      <%= form.select :payment_type, ["cash", "installment"], class: "form-control w-10 custom-select", id: "inputGroupSelect01" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :offer_amount %>
+    <%= form.number_field :offer_amount %>
+  </div>
+
+  <div class="field">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect02">Source of funds: </label>
+        </div>
+      <%= form.select :source_of_funds, ["savings/investments", "salary", "business income"], class: "form-control w-10 custom-select", id: "inputGroupSelect02" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note %>
+    <%= form.text_field :note %>
+  </div>
+
+  <% if current_user.issuperadmin? || current_user.isadmin? %>
+    <div class="field">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect03">Status</label>
+          </div>
+        <%= form.select :status, ["pending", "processing", "approved"], class: "form-control w-10 custom-select", id: "inputGroupSelect03" %>
+    </div>
+    <%= form.hidden_field :updated_by, value: current_user.id %>
+    <%= form.hidden_field :user_id, value: @offer.user_id %>
+    <%= form.hidden_field :car_id, value: @car.id %>
+  <% else %>
+    <%= form.hidden_field :status, value: :pending %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :car_id, value: @car.id %>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

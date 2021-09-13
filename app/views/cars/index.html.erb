@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Cars</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>brand</th>
+      <th>year</th>
+      <th>model</th>
+      <th>fuel</th>
+      <th>plate_number</th>
+      <th>color</th>
+      <th>mileage</th>
+      <th>price</th>
+      <th>deadline</th>
+      <th>warehouse</th>
+      <th>car type</th>
+      <th>Add by User</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cars.each do |car| %>
+      <tr>
+        <td><%= car.id %></td>
+        <td><%= car.brand.name %></td>
+        <td><%= car.year %></td>
+        <td><%= car.model %></td>
+        <td><%= car.fuel %></td>
+        <td><%= car.plate_number %></td>
+        <td><%= car.color %></td>
+        <td><%= number_to_currency(car.mileage, precision: 0, :unit => "") %></td>
+        <td><%= number_to_currency(car.price, :unit => "P ", precision: 0) %></td>
+        <td><%= car.deadline %></td>
+        <td><%= car.warehouse %></td>
+        <td><%= car.type.name %></td>
+        <td><%= car.user.first_name %> <%= car.user.last_name %></td>
+        <td><%= link_to "Show", car %></td>
+        <% if current_user.present? %>
+          <% if current_user.issuperadmin? || current_user.isadmin? %>
+            <td><%= link_to "Edit", edit_car_path(car) %></td>
+            <td><%= link_to "Destroy", car, method: :delete, data: { confirm: "Are you sure?" } %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if current_user.present? %>
+  <% if current_user.issuperadmin? || current_user.isadmin? %>
+    <%= link_to "New Car", new_car_path %>
+  <% end %>
+<% end %>
