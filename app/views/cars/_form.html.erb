@@ -78,6 +78,15 @@
     <%= form.file_field :image %>
   </div>
   <br>
+    <div class="field">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect09">Featured?</label>
+          <%= form.check_box :featured, {}, true, false %>
+        </div>
+      </div>
+    </div> 
+    <br>
   <%= form.hidden_field :user_id, value: current_user.id %>
   <div class="actions">
     <%= form.submit %>
