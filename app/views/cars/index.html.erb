@@ -18,6 +18,7 @@
       <th>warehouse</th>
       <th>car type</th>
       <th>Add by User</th>
+      <th>Image url</th>
     </tr>
   </thead>
 
@@ -37,6 +38,7 @@
         <td><%= car.warehouse %></td>
         <td><%= car.type.name %></td>
         <td><%= car.user.first_name %> <%= car.user.last_name %></td>
+        <td><%= image_tag car.image_url if car.image %></td>
         <td><%= link_to "Show", car %></td>
         <% if current_user.present? %>
           <% if current_user.issuperadmin? || current_user.isadmin? %>

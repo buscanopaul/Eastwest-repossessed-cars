@@ -13,6 +13,7 @@
     <%= @brand.user.first_name %> <%= @brand.user.last_name %>
   </p>
 
+  <p><td><%= image_tag @brand.image_url if @brand.image %></td></p>
   <%= link_to "Edit", edit_brand_path(@brand) %> |
   <%= link_to "Back", brands_path %>
 
@@ -29,6 +30,7 @@
     <th>plate_number</th>
     <th>color</th>
     <th>mileage</th>
+    <th>image</th>
   </tr>
 
     <% @brand.cars.each do |car| %>
@@ -40,6 +42,8 @@
         <td><%= car.plate_number %></td>
         <td><%= car.color %></td>
         <td><%= car.mileage %></td>
+        <td><%= image_tag car.image_url if car.image %></td>
+        <td><%= link_to "Make Offer", car %></td>
         </tr>
       <% end %>
     <% end %>

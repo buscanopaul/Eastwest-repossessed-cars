@@ -14,6 +14,7 @@
       <th>price</th>
       <th>deadline</th>
       <th>warehouse</th>
+      <th>image</th>
     </tr>
   </thead>
 
@@ -31,6 +32,7 @@
         <td><%= number_to_currency(car.price, :unit => "P ", precision: 0) %></td>
         <td><%= car.deadline %></td>
         <td><%= car.warehouse %></td>
+        <td><%= image_tag car.image_url if car.image %></td>
         <td><%= link_to "Make Offer", car %></td>
       </tr>
     <% end %>
@@ -42,7 +44,8 @@
 <h1>View by Brands</h1>
 
     <% @brands.each do |brand| %>
-       <td><%= link_to brand.name, brand %></td>
+      <td><%= link_to brand.name, brand %></td>
+      <td><%= image_tag brand.image_url if brand.image %></td>
     <% end %>
 
   <br><br>
@@ -50,4 +53,5 @@
 
     <% @types.each do |type| %>
        <td><%= link_to type.name, type %></td>
+       <td><%= image_tag type.image_url if type.image %></td>
     <% end %>

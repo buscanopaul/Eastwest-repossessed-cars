@@ -1,7 +1,7 @@
 class CarsController < ApplicationController
   before_action :check_isAuthorize?, only: %i[ new create edit update destroy ]
   before_action :set_car, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i[index]
 
   # GET /cars or /cars.json
   def index
@@ -75,6 +75,6 @@ class CarsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def car_params
-    params.require(:car).permit(:brand, :year, :model, :fuel, :plate_number, :color, :mileage, :price, :deadline, :warehouse, :user_id, :brand_id, :type_id)
+    params.require(:car).permit(:brand, :year, :model, :fuel, :plate_number, :color, :mileage, :price, :deadline, :warehouse, :user_id, :brand_id, :type_id, :image)
   end
 end

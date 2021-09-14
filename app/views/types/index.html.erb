@@ -6,6 +6,8 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Added By</th>
+      <th>Image</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,6 +17,7 @@
       <tr>
         <td><%= type.name %></td>
         <td><%= type.user.first_name %> <%= type.user.last_name %></td>
+        <td><%= image_tag type.image_url if type.image %></td>
         <td><%= link_to "Show", type %></td>
          <% if current_user.present? %>
           <% if current_user.issuperadmin? || current_user.isadmin? %>

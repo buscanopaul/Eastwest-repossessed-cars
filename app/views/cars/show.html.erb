@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <b>Image data:</b>
+ <%= image_tag @car.image_url if @car.image %>
+</p>
+<p>
   <b>year:</b>
   <%= @car.year %>
 </p>

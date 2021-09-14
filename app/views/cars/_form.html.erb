@@ -73,6 +73,11 @@
     <%= form.select :type_id, Type.all.map { |c| [c.name, c.id] } %>
   </div>
   <br>
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+  <br>
   <%= form.hidden_field :user_id, value: current_user.id %>
   <div class="actions">
     <%= form.submit %>

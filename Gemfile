@@ -27,6 +27,8 @@ gem "devise"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false
+gem "shrine"
+gem "image_processing", "~> 1.12", ">= 1.12.1"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

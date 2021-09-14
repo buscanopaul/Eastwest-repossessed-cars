@@ -15,6 +15,11 @@
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
+   <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+  <br>
   <%= form.hidden_field :user_id, value: current_user.id %>
   <div class="actions">
     <%= form.submit %>

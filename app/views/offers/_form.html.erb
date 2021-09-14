@@ -34,7 +34,12 @@
         <%= form.select :status, ["pending", "processing", "approved"], class: "form-control w-10 custom-select", id: "inputGroupSelect03" %>
     </div>
     <%= form.hidden_field :updated_by, value: current_user.id %>
-    <%= form.hidden_field :user_id, value: @offer.user_id %>
+    
+    <% if offer.inspect %>
+     <%= form.hidden_field :user_id, value: current_user.id %>
+    <% else %>
+      <%= form.hidden_field :user_id, value: offer.inspect %>
+    <% end %>
     <%= form.hidden_field :car_id, value: @car.id %>
   <% else %>
     <%= form.hidden_field :status, value: :pending %>

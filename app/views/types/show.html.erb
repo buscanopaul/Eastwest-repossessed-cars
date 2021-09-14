@@ -11,6 +11,7 @@
       <%= @type.user.first_name %> <%= @type.user.last_name %>
     </p>
 
+      <p><td><%= image_tag @type.image_url if @type.image %></td></p>
 
     <%= link_to "Edit", edit_type_path(@type) %> |
     <%= link_to "Back", types_path %>
@@ -39,6 +40,8 @@
         <td><%= car.color %></td>
         <td><%= car.mileage %></td>
         <td><%= car.type.name %></td>
+        <td><%= image_tag car.image_url if car.image %></td>
+        <td><%= link_to "Make Offer", car %></td>
         </tr>
       <% end %>
     <% end %>

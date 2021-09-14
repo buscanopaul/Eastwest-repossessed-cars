@@ -23,7 +23,7 @@
       <th>warehouse</th>
       <th>car type</th>
       <% if current_user.issuperadmin? || current_user.isadmin? %>
-        <th>user_id</th>
+        <th>Offer_by</th>
         <th>Updated By</th>
         <th>Last Updated</th>
       <% end %>
@@ -52,6 +52,7 @@
             <td><%= offer.car.deadline %></td>
             <td><%= offer.car.warehouse %></td>
             <td><%= offer.car.type.name %></td>
+            <td><%= image_tag offer.car.image_url if offer.car.image %></td>
           <% elsif current_user.issuperadmin? || current_user.isadmin? %>
             <td><%= offer.id %></td>
             <td><%= offer.payment_type %></td>
@@ -73,8 +74,7 @@
             <td><%= offer.user.email %></td>
             <td><%= offer.updated_by %></td>
             <td><%= offer.updated_at.strftime("%-d/%-m/%y: %H:%M %Z") %> </td>
-
-  
+            <td><%= image_tag offer.car.image_url if offer.car.image %></td>
           <% end %>
           <% if current_user.present? %>
             <% if current_user.issuperadmin? || current_user.isadmin? %>

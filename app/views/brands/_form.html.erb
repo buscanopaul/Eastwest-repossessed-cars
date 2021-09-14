@@ -15,6 +15,13 @@
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
+  <div class="field">
+    <%= form.label :image %>
+    <%= image_tag form.object.image_rul if form.object.cached_image_data %>
+    <%= form.hidden_field :image, value: form.object.cached_image_data %>
+    <%= form.file_field :image %>
+  </div>
+  <br>
   <%= form.hidden_field :user_id, value: current_user.id %>
   <div class="actions">
     <%= form.submit %>
