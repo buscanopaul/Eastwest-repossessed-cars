@@ -5,7 +5,7 @@ class CarsController < ApplicationController
 
   # GET /cars or /cars.json
   def index
-    @cars = Car.all
+    @cars = Car.order(created_at: :desc)
   end
 
   # GET /cars/1 or /cars/1.json

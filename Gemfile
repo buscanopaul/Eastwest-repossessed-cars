@@ -29,6 +29,7 @@ gem "devise"
 gem "bootsnap", ">= 1.4.4", require: false
 gem "shrine"
 gem "image_processing", "~> 1.12", ">= 1.12.1"
+gem "jquery-slick-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,64 +1,55 @@
 <section id="homeFeatured">
   <div class="container-fluid">
     <div class="row">
+     <% @latest_features.each do |latest_feature| %>
         <div class="col left-text">
           <div class="group">
-            <h1>Toyota Fortuner 2021</h1>
-            <h1 class="second-title">30,000 mileage</h1>
+            <h1><%= latest_feature.brand.name %> <%= latest_feature.model %> <%= latest_feature.year %></h1>
+            <h1 class="second-title"><%= number_to_currency(latest_feature.mileage, precision: 0, :unit => "") %> mileage</h1>
             <div class="subtitle">Used, Second-Hand and Repossessed Cars. Low Priced, High Quality.</div>
-            <a class="btn btn-primary text-white bg-purple w-25 py-3" href="/users/sign_up">Make Offer</a>
+            <%= link_to "Make Offer", latest_feature, class: "btn btn-primary text-white bg-purple w-25 py-3" %>
           </div>
         </div>
         <div class="col right-image"> 
           <div class="group">
-            <%= image_tag "image.jpeg", alt: "Eastwest", style: "height: auto;width:100%;" %>
+            <%= image_tag latest_feature.image_url, style: "width: 100%;height: auto;" if latest_feature.image %>
           </div>
         </div>
+      <% end %>
     </div>
   </div>
 </section>
-<h1>Latest Listing</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>brand</th>
-      <th>year</th>
-      <th>model</th>
-      <th>fuel</th>
-      <th>plate_number</th>
-      <th>color</th>
-      <th>mileage</th>
-      <th>price</th>
-      <th>deadline</th>
-      <th>warehouse</th>
-      <th>image</th>
-    </tr>
-  </thead>
+<section id="homeLatest">
+  <div class="container">
+    <div class="row">
+      <h1>Latest Listings</h1>
+    </div>
+    <div class="wrapper">
+      <div class="carousel">
+        <% @cars.each do |car| %>
+            <div class="latest-item">
+              <div class="latest-image" style="
+        background-image: url(<%= car.image_url %>);
+        height: 250px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    ">
+              </div>
+              <div class="latest-description">
+                <h5><%= car.year %> <%= car.brand.name %> <%= car.model %></h5>
+                <p class="latest-price"><b>Price:</b> <%= number_to_currency(car.price, :unit => "P", precision: 0) %></p>
+                <p class="latest-mileage"><b>Milage:</b> <%= number_to_currency(car.mileage, precision: 0, :unit => "") %> KM</p>
+                <%= link_to "Make Offer", car, class: "btn btn-primary text-white bg-purple" %>
+              </div>
+            </div>
+        <% end %>
 
-  <tbody>
-    <% @cars.each do |car| %>
-      <tr>
-        <td><%= car.id %></td>
-        <td><%= car.brand %></td>
-        <td><%= car.year %></td>
-        <td><%= car.model %></td>
-        <td><%= car.fuel %></td>
-        <td><%= car.plate_number %></td>
-        <td><%= car.color %></td>
-        <td><%= number_to_currency(car.mileage, precision: 0, :unit => "") %></td>
-        <td><%= number_to_currency(car.price, :unit => "P ", precision: 0) %></td>
-        <td><%= car.deadline %></td>
-        <td><%= car.warehouse %></td>
-        <td><%= image_tag car.image_url if car.image %></td>
-        <td><%= link_to "Make Offer", car %></td>
-      </tr>
-    <% end %>
-
-
-  </tbody>
-</table>
+      </div>
+    </div>
+</div>
+</section>
 <br><br>
 <h1>View by Brands</h1>
 

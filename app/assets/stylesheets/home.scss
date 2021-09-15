@@ -72,6 +72,7 @@
             font-weight: 700;
             font-size: 50px;
             line-height: 60px;
+            text-transform: capitalize;
           }
 
           .second-title {
@@ -144,3 +145,86 @@ a:hover {
 
 }
 
+#homeLatest {
+  padding-top: 100px;
+
+    h1 {
+      font-family: 'Graphik';
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 50px;
+      padding-left: 20px;
+     }
+
+     .latest-item {
+       &:hover {
+         cursor: pointer;
+       }
+     }
+
+    .latest-image {
+      border-radius: 4px 4px 0 0;
+      -webkit-box-shadow: 0 1px 10px -4px rgba(0, 0, 0, .28);
+      box-shadow: 0 1px 10px -4px rgba(0,0,0, .28);
+    }
+
+    .latest-description {
+      text-align: left;
+      padding: 20px 15px;
+      border-radius: 0 0 4px 4px;
+      -webkit-box-shadow: 0 1px 10px -4px rgba(0, 0, 0, .28);
+      box-shadow: 0 1px 10px -4px rgba(0,0,0, .28);
+      height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      h5 {
+        font-size: 18px;
+        line-height: 28px;
+        font-family: 'Graphik';
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-transform: capitalize;
+      }
+
+      .latest-mileage {
+          margin-bottom: 25px;
+          font-family: 'Graphik';
+          font-weight: 400;
+          font-size: 15px;
+          line-height: 25px;
+      }
+      .latest-price {
+          font-family: 'Graphik';
+          font-weight: 400;
+          font-size: 15px;
+          line-height: 25px;
+          margin-bottom: 0;
+      }
+
+      a {
+        width: 50%;
+      }
+    }
+}
+
+
+
+.wrapper{
+  width:100%;
+  padding-top: 20px;
+  text-align:center;
+}
+
+.carousel{
+  width:100%;
+  margin:0px auto;
+}
+.slick-slide{
+  margin:10px;
+}
+.slick-slide img{
+  width:100%;
+  border: 2px solid #fff;
+}
