@@ -50,18 +50,36 @@
     </div>
 </div>
 </section>
-<br><br>
-<h1>View by Brands</h1>
 
-    <% @brands.each do |brand| %>
-      <td><%= link_to brand.name, brand %></td>
-      <td><%= image_tag brand.image_url if brand.image %></td>
-    <% end %>
-
-  <br><br>
-<h1>View by Car Type</h1>
-
-    <% @types.each do |type| %>
-       <td><%= link_to type.name, type %></td>
-       <td><%= image_tag type.image_url if type.image %></td>
-    <% end %>
+<section id="homeBrands">
+  <div class="container">
+    <div class="row">
+      <h1>View By Brands</h1>
+      <div class="d-flex justify-content-left bd-highlight mb-3 brands-container flex-wrap">
+        <% @brands.each do |brand| %>
+        
+        <div class="p-2 bd-highlight w-25 bg-brand" style="
+            background-image: url(<%= asset_path "dry-clean.png" %>);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        "><%= link_to image_tag(brand.image_url, :class => "img-polaroid"), brand if brand.image %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="homeType">
+  <div class="container">
+    <h1>View By Types</h1>
+    <div class="row align-items-start">
+      <% @types.each do |type| %>
+        <div  class="col" style="background-image: url(<%= type.image_url %>);">
+          <h4><%= type.name %></h4>
+          <%= link_to " ", type, class: "link-type" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
