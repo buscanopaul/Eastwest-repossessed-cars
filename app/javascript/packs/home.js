@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function (){
   $('.carousel').slick({
   dots: false,
   arrows: false,
