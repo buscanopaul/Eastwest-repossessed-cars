@@ -1,38 +1,75 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Types</h1>
+<% if current_user.present? %>
+  <% if current_user.issuperadmin? || current_user.isadmin? %>
+    <h1>Types</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Added By</th>
+          <th>Image</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Added By</th>
-      <th>Image</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @types.each do |type| %>
-      <tr>
-        <td><%= type.name %></td>
-        <td><%= type.user.first_name %> <%= type.user.last_name %></td>
-        <td><%= image_tag type.image_url if type.image %></td>
-        <td><%= link_to "Show", type %></td>
-         <% if current_user.present? %>
-          <% if current_user.issuperadmin? || current_user.isadmin? %>
-            <td><%= link_to "Edit", edit_type_path(type) %></td>
-            <td><%= link_to "Destroy", type, method: :delete, data: { confirm: "Are you sure?" } %></td>
-          <% end %>
+      <tbody>
+        <% @types.each do |type| %>
+          <tr>
+            <td><%= type.name %></td>
+            <td><%= type.user.first_name %> <%= type.user.last_name %></td>
+            <td><%= image_tag type.image_url if type.image %></td>
+            <td><%= link_to "Show", type %></td>
+            <% if current_user.present? %>
+              <% if current_user.issuperadmin? || current_user.isadmin? %>
+                <td><%= link_to "Edit", edit_type_path(type) %></td>
+                <td><%= link_to "Destroy", type, method: :delete, data: { confirm: "Are you sure?" } %></td>
+              <% end %>
+            <% end %>
+          </tr>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table> 
-
+      </tbody>
+    </table> 
+  <% end %>
+<% end %>
 <br>
 <% if current_user.present? %>
   <% if current_user.issuperadmin? || current_user.isadmin? %>
 <%= link_to "New Type", new_type_path %>
   <% end %>
 <% end %>
+
+<section id="carsTitle">
+  <h1>Explore Car Types</h1>
+  <p>We make owning a car easy and affordable. <br> Check out our high-quality used cars for sale.</p>
+</section>
+
+<section id="carsList">
+  <div class="container">
+    <div class="row">
+      <div class="d-flex justify-content-left bd-highlight mb-3 flex-wrap cars-container">
+        
+        <% @types.each do |type| %>
+            <div class="p-2 bd-highlight w-25 pre-card">
+              <div class="card">
+                <div class="cars-list-image" style="
+          background-image: url(<%= type.image_url %>);
+          height: 250px;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 250px;
+          background-color: white;
+          border-bottom: 1px solid gray;
+      "></div>
+                <div class="card-body text-center">
+                  <h5 class="card-title"><%= type.name %></h5>
+                  <%= link_to "Explore", type, class: "btn btn-primary text-white bg-purple text-center" %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      
+      </div>
+    </div>
+  </div>
+</section>

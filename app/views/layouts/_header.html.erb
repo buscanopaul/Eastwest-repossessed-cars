@@ -10,7 +10,7 @@
         <li><%= link_to "Home", root_path, class: "nav-link px-2 link-dark" %></li>
         <li><%= link_to "Cars", cars_path, class: "nav-link px-2 link-dark" %></li>
         <li><%= link_to "Brands", brands_path, class: "nav-link px-2 link-dark" %></li>
-        <li><%= link_to "Types", brands_path, class: "nav-link px-2 link-dark" %></li>
+        <li><%= link_to "Types", types_path, class: "nav-link px-2 link-dark" %></li>
         <% if user_signed_in? %>
              <% if current_user.issuperadmin? || current_user.isadmin? %>
                 <li><%= link_to "Offers", offers_path, class: "nav-link px-2 link-dark" %></li>
