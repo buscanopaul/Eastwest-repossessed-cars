@@ -18,31 +18,42 @@
   <% end %>
 <% end %>
 
-<br><br>
-<table>
-  <tr>
-    <th>Brand</th>
-    <th>Model</th>
-    <th>fuel</th>
-    <th>plate_number</th>
-    <th>color</th>
-    <th>mileage</th>
-    <th>car type</th>
-  </tr>
+<section id="carsTitle">
+  <h1><%= @type.name %> Cars</h1>
+  <p>Beginner guides, practical tips, and market updates for first-timers, experienced investors, <br>and everyone in between</p>
+</section>
 
-    <% @type.cars.each do |car| %>
-      <% if car.persisted? %>
-        <tr>
-        <td><%= car.brand.name %></td>
-        <td><%= car.model %></td>
-        <td><%= car.fuel %></td>
-        <td><%= car.plate_number %></td>
-        <td><%= car.color %></td>
-        <td><%= car.mileage %></td>
-        <td><%= car.type.name %></td>
-        <td><%= image_tag car.image_url if car.image %></td>
-        <td><%= link_to "Make Offer", car %></td>
-        </tr>
-      <% end %>
-    <% end %>
-</table>
+<section id="carsList">
+  <div class="container">
+    <div class="row">
+      <div class="d-flex justify-content-left bd-highlight mb-3 flex-wrap cars-container">
+        
+        <% @type.cars.each do |car| %>
+          <% if car.persisted? %>
+            <div class="p-2 bd-highlight w-25 pre-card">
+              <div class="card">
+                <div class="cars-list-image" style="
+          background-image: url(<%= car.image_url %>);
+          height: 250px;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+      "></div>
+                <div class="card-body">
+                  <h5 class="card-title"><%= car.year %> <%= car.brand.name %> <%= car.model %></h5>
+                  <p class="card-text">
+                    <font><b>Price:</b> <%= number_to_currency(car.price, :unit => "P", precision: 0) %></font>
+                    <font><b>Milage:</b> <%= number_to_currency(car.mileage, precision: 0, :unit => "") %> KM</font>
+                    <font><b>Fuel:</b> <%= car.fuel %></font> 
+                  </p>
+                  <%= link_to "Make Offer", car, class: "btn btn-primary text-white bg-purple" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      
+      </div>
+    </div>
+  </div>
+</section>

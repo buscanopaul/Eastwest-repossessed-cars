@@ -1,3 +1,69 @@
 // Place all the styles related to the cars controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+#carsTitle {
+    margin-bottom: 80px;
+
+    h1 {
+      font-family: 'Graphik';
+      font-weight: 700;
+      font-size: 52px;
+      line-height: 62px;
+      text-align: center;
+      text-transform: capitalize;
+    }
+
+    p {
+        font-family: 'Graphik';
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 26px;
+        text-align: center;
+    }
+
+
+}
+
+#carsList {
+
+    .cars-container {
+        justify-content: center;
+    }
+
+    .pre-card {
+        margin-bottom: 20px;     
+    }
+
+    .card {
+        border: 0;
+        -webkit-box-shadow: 0 1px 10px -4px rgba(0, 0, 0, .28);
+        box-shadow: 0 1px 10px -4px rgba(0,0,0, .28);
+
+        .card-body {
+            .card-title {
+                margin-bottom: 20px;
+                font-family: 'Graphik';
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 30px;
+                text-transform: capitalize;
+            }
+
+            .card-text {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 20px;
+                font-family: 'Graphik';
+                font-weight: 400;
+                font-size: 13px;
+                line-height: 23px;
+                text-transform: capitalize;
+
+                font {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}
