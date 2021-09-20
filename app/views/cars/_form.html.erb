@@ -10,85 +10,92 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= form.label :model %>
-    <%= form.text_field :model, class: "form-control w-25" %>
-  </div>
-  <br>
-   <div class="field">
-    <%= form.label :year %>
-    <%= form.text_field :year, class: "form-control w-25" %>
-  </div>
-  <br>
-    <div class="field">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <label class="input-group-text" for="inputGroupSelect02">Fuel</label>
+  <section id="formCar">
+    <div class="container">
+      <div class="row g-3 form-car">
+        <div class="form-group col-sm-6">
+          <%= form.label :model %>
+          <%= form.text_field :model, class: "form-control" %>
         </div>
-      <%= form.select :fuel, ["gas", "diesel"], class: "form-control w-10 custom-select", id: "inputGroupSelect02" %>
-    </div>
-  <br>
-  <div class="field">
-    <%= form.label :color %>
-    <%= form.text_field :color, class: "form-control w-25" %>
-  </div>
-  <br>
-    <div class="field">
-    <%= form.label :plate_number %>
-    <%= form.text_field :plate_number, class: "form-control w-25" %>
-  </div>
-  <br>
-    <div class="field">
-    <%= form.label :mileage %>
-    <%= form.text_field :mileage, class: "form-control w-25" %>
-  </div>
-  <br>
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price, class: "form-control w-25" %>
-  </div>
-  <br>
-  <div class="field">
-    <%= form.label :warehouse %>
-    <%= form.text_field :warehouse, class: "form-control w-25" %>
-  </div>
-  <br>
-  <div class="field">
-    <%= form.label :deadline %><br />
-    <%= form.datetime_field :deadline, placeholder: "Pick a Date", data: {
-                                         controller: "flatpickr",
-                                         flatpickr_alt_format: t("date.formats.long"),
-                                         flatpickr_date_format: "%b %d, %Y",
-                                         flatpickr_min_date: Time.zone.now,
-                                       } %>
-  </div>
-  <br>
-  <div class="field">
-    <%= form.label :brand_id %>
-    <%= form.select :brand_id, Brand.all.map { |c| [c.name, c.id] } %>
-  </div>
-  <br>
-  <div class="field">
-    <%= form.label :type_id %>
-    <%= form.select :type_id, Type.all.map { |c| [c.name, c.id] } %>
-  </div>
-  <br>
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
-  </div>
-  <br>
-    <div class="field">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <label class="input-group-text" for="inputGroupSelect09">Featured?</label>
-          <%= form.check_box :featured, {}, true, false %>
+        <br>
+        <div class="form-group col-sm-6">
+          <%= form.label :year %>
+          <%= form.text_field :year, class: "form-control" %>
+        </div>
+        <br>
+          <div class="form-group col-sm-6">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect02">Fuel</label>
+              </div>
+            </div>
+            <%= form.select :fuel, ["gas", "diesel"], class: "form-control custom-select", id: "inputGroupSelect02" %>
+          </div>
+        <br>
+        <div class="form-group col-sm-6">
+          <%= form.label :color %>
+          <%= form.text_field :color, class: "form-control" %>
+        </div>
+        <br>
+          <div class="form-group col-sm-6">
+          <%= form.label :plate_number %>
+          <%= form.text_field :plate_number, class: "form-control" %>
+        </div>
+        <br>
+          <div class="form-group col-sm-6">
+          <%= form.label :mileage %>
+          <%= form.text_field :mileage, class: "form-control" %>
+        </div>
+        <br>
+        <div class="form-group col-sm-6">
+          <%= form.label :price %>
+          <%= form.text_field :price, class: "form-control" %>
+        </div>
+        <br>
+        <div class="form-group col-12">
+          <%= form.label :warehouse %>
+          <%= form.text_area :warehouse, class: "form-control" %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= form.label :deadline %><br />
+          <%= form.datetime_field :deadline, placeholder: "Pick a Date", data: {
+                                              controller: "flatpickr",
+                                              flatpickr_alt_format: t("date.formats.long"),
+                                              flatpickr_date_format: "%b %d, %Y",
+                                              flatpickr_min_date: Time.zone.now,
+                                            } %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= form.label :brand_id %>
+          <%= form.select :brand_id, Brand.all.map { |c| [c.name, c.id] } %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= form.label :type_id %>
+          <%= form.select :type_id, Type.all.map { |c| [c.name, c.id] } %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= form.label :image %>
+          <%= form.file_field :image %>
+        </div>
+        <br>
+          <div class="form-group">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect09">Featured?</label>
+                <%= form.check_box :featured, {}, true, false %>
+              </div>
+            </div>
+          </div> 
+          <br>
+        <%= form.hidden_field :user_id, value: current_user.id %>
+        <div class="actions">
+          <%= form.submit %>
+          </div>
         </div>
       </div>
-    </div> 
-    <br>
-  <%= form.hidden_field :user_id, value: current_user.id %>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  </section>
 <% end %>

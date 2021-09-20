@@ -1,16 +1,69 @@
-<p id="notice"><%= notice %></p>
+<% if current_user.present? %>
+  <% if current_user.issuperadmin? || current_user.isadmin? %>
+    <%= link_to "New Car", new_car_path, class: "d-flex justify-content-center" %>
+  <% end %>
+<% end %>
+
+<% if current_user.present? %>
+  <% if current_user.issuperadmin? || current_user.isadmin? %>
+    <section id="offersTable" style="margin-bottom: 100px;">
+      <div class="container mt-7">
+          <!-- Table -->
+          <div class="row">
+
+            <div class="col">
+              <div class="card shadow">
+                <div class="card-header border-0">
+                  <h3 class="mb-0">Cars</h3>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Added By</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @cars.each do |car| %>
+                        <tr> 
+                            <td><div class="yow" style="
+                              background-image: url(<%= car.image_url %>);
+                              height: 50px;
+                              background-position: center;
+                              background-repeat: no-repeat;
+                              background-size: contain;
+                          "></div></td>
+                            <td><%= car.year %> <%= car.brand.name %> <%= car.model %></td>
+                            <td><%= car.user.first_name %> <%= car.user.last_name %></td>
+                            <td><%= link_to "Show", car %></td>
+                            <td><%= link_to "Edit", edit_car_path(car) %></td>
+                            <td><%= link_to "Destroy", car, method: :delete, data: { confirm: "Are you sure?" } %></td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <!-- Dark table -->
+          
+        </div>
+    </section>
+  <% end %>
+<% end %>
 
 
 <section id="carsTitle">
   <h1>Explore Cars</h1>
   <p>We make owning a car easy and affordable. <br> Check out our high-quality used cars for sale.</p>
 </section>
-
-<% if current_user.present? %>
-  <% if current_user.issuperadmin? || current_user.isadmin? %>
-    <%= link_to "New Car", new_car_path, class: "d-flex justify-content-center" %>
-  <% end %>
-<% end %>
 
 <section id="carsList">
   <div class="container">

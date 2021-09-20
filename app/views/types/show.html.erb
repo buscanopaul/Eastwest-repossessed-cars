@@ -1,22 +1,4 @@
-<p id="notice"><%= notice %></p>
-<% if current_user.present? %>
-  <% if current_user.issuperadmin? || current_user.isadmin? %>
-    <p>
-      <strong>Name:</strong>
-      <%= @type.name %>
-    </p>
 
-      <p>
-      <strong>Added By User:</strong>
-      <%= @type.user.first_name %> <%= @type.user.last_name %>
-    </p>
-
-      <p><td><%= image_tag @type.image_url if @type.image %></td></p>
-
-    <%= link_to "Edit", edit_type_path(@type) %> |
-    <%= link_to "Back", types_path %>
-  <% end %>
-<% end %>
 
 <section id="carsTitle">
   <h1><%= @type.name %> Cars</h1>
