@@ -1,90 +1,161 @@
-<p id="notice"><%= notice %></p>
+<section id="offersTable">
+  <div class="container mt-7">
+      <!-- Table -->
+      <div class="row">
 
-<h1>Offers</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Reference ID</th>
-      <th>Payment type</th>
-      <th>Offer amount</th>
-      <th>Source of funds</th>
-      <th>note</th>
-      <th>Status</th>
-      <th>brand</th>
-      <th>year</th>
-      <th>model</th>
-      <th>fuel</th>
-      <th>plate_number</th>
-      <th>color</th>
-      <th>mileage</th>
-      <th>price</th>
-      <th>deadline</th>
-      <th>warehouse</th>
-      <th>car type</th>
-      <% if current_user.issuperadmin? || current_user.isadmin? %>
-        <th>Offer_by</th>
-        <th>Updated By</th>
-        <th>Last Updated</th>
-      <% end %>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @offers.each do |offer| %>
-        <tr>
-          <% if offer.user == current_user %>
-            <td><%= offer.id %></td>
-            <td><%= offer.payment_type %></td>
-            <td><%= offer.offer_amount %></td>
-            <td><%= offer.source_of_funds %></td>
-            <td><%= offer.note %></td>
-            <td><%= offer.status %></td>
-            <td><%= offer.brand %></td>
-            <td><%= offer.car.year %></td>
-            <td><%= offer.car.model %></td>
-            <td><%= offer.car.fuel %></td>
-            <td><%= offer.car.plate_number %></td>
-            <td><%= offer.car.color %></td>
-            <td><%= number_to_currency(offer.car.mileage, precision: 0, :unit => "") %></td>
-            <td><%= number_to_currency(offer.car.price, :unit => "P ", precision: 0) %></td>
-            <td><%= offer.car.deadline %></td>
-            <td><%= offer.car.warehouse %></td>
-            <td><%= offer.car.type.name %></td>
-            <td><%= image_tag offer.car.image_url if offer.car.image %></td>
-          <% elsif current_user.issuperadmin? || current_user.isadmin? %>
-            <td><%= offer.id %></td>
-            <td><%= offer.payment_type %></td>
-            <td><%= offer.offer_amount %></td>
-            <td><%= offer.source_of_funds %></td>
-            <td><%= offer.note %></td>
-            <td><%= offer.status %></td>
-            <td><%= offer.brand %></td>
-            <td><%= offer.car.year %></td>
-            <td><%= offer.car.model %></td>
-            <td><%= offer.car.fuel %></td>
-            <td><%= offer.car.plate_number %></td>
-            <td><%= offer.car.color %></td>
-            <td><%= number_to_currency(offer.car.mileage, precision: 0, :unit => "") %></td>
-            <td><%= number_to_currency(offer.car.price, :unit => "P ", precision: 0) %></td>
-            <td><%= offer.car.deadline %></td>
-            <td><%= offer.car.warehouse %></td>
-            <td><%= offer.car.type.name %></td>
-            <td><%= offer.user.email %></td>
-            <td><%= offer.updated_by %></td>
-            <td><%= offer.updated_at.strftime("%-d/%-m/%y: %H:%M %Z") %> </td>
-            <td><%= image_tag offer.car.image_url if offer.car.image %></td>
-          <% end %>
-          <% if current_user.present? %>
-            <% if current_user.issuperadmin? || current_user.isadmin? %>
-              <td><%= link_to "Edit", edit_car_offer_path(offer.car, offer) %></td>
-              <td><%= link_to "Destroy", [offer.car, offer], :method => :delete, :data => { :confirm => "Are you sure?" } %></td>
-            <% end %>
-          <% end %>
-        </tr>
-  
-    <% end %>
-  </tbody>
-</table>
-
+        <div class="col">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <h3 class="mb-0">My Offers</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <% if current_user.issuperadmin? || current_user.isadmin? %>
+                      <th></th>
+                      <th></th>
+                      <th>Offer_by</th>
+                      <th>Updated By</th>
+                      <th>Last Updated</th>
+                    <% end %>
+                    <th scope="col">Reference ID</th>
+                    <th scope="col">Date Submitted</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Offer</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Payment Type</th>
+                    <th scope="col">Source of Funds</th>
+                    <th scope="col">Deadline</th>
+                    <th scope="col">Plate Number</th>
+                    <th scope="col">Mileage</th>
+                    <th scope="col">Warehouse</th>
+                    <th scope="col">Note</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @offers.each do |offer| %>
+                  <tr>
+                  <% if offer.user == current_user %>
+                  <th scope="row">
+                        <div class="media align-items-center">
+                        <%= link_to offer.id, offer.car, class: "avatar rounded-circle mr-3 text-black" %>
+                          <div class="media-body">
+                            <span class="mb-0 text-sm"><%= offer.car.year %>	<%= offer.brand %> <%= offer.car.model %></span>
+                          </div>
+                        </div>
+                      </th>
+                    <td>
+                      <%= offer.created_at.strftime("%-d/%-m/%y: %H:%M %Z") %>
+                    </td>
+                    <td>
+                      <%= number_to_currency(offer.car.price, :unit => "P", precision: 0) %> PHP
+                    </td>
+                    <td>
+                      <%= number_to_currency(offer.offer_amount, :unit => "P", precision: 0) %> PHP
+                    </td>
+                    <td>
+                      <span class="badge badge-dot mr-1 text-black">
+                        <% if offer.status == "pending" %>
+                          <i class="bg-warning"></i> Pending
+                        <% elsif offer.status == "processing" %>
+                          <i class="bg-info"></i> Processing
+                        <% else %>
+                          <i class="bg-success"></i> Approved
+                        <% end %>
+                      </span>
+                    </td>
+                    <td class="text-capitalize">
+                     <%= offer.payment_type %>
+                    </td>
+                    <td class="text-capitalize">
+                     <%= offer.source_of_funds %>
+                    </td>
+                    <td>
+                      <%= offer.car.deadline %>
+                    </td>
+                    <td>
+                     <%= offer.car.plate_number %>
+                    </td>
+                    <td>
+                      <%= number_to_currency(offer.car.mileage, :unit => " ", precision: 0) %> KM
+                    </td>
+                    <td>
+                     <%= offer.car.warehouse %>
+                    </td>
+                    <td>
+                      <%= offer.note %>
+                    </td>
+                    <% elsif current_user.issuperadmin? || current_user.isadmin? %>
+                      <% if current_user.present? %>
+                        <% if current_user.issuperadmin? || current_user.isadmin? %>
+                          <td><%= link_to "Edit", edit_car_offer_path(offer.car, offer) %></td>
+                          <td><%= link_to "Destroy", [offer.car, offer], :method => :delete, :data => { :confirm => "Are you sure?" } %></td>
+                        <% end %>
+                      <% end %>
+                      <td><%= offer.user.email %></td>
+                      <td><%= offer.updated_by %></td>
+                      <td><%= offer.updated_at.strftime("%-d/%-m/%y: %H:%M %Z") %> </td>
+                      <th scope="row">
+                        <div class="media align-items-center">
+                          <%= link_to offer.id, offer.car, class: "avatar rounded-circle mr-3 text-black" %>
+                          <div class="media-body">
+                            <span class="mb-0 text-sm"><%= offer.car.year %>	<%= offer.brand %> <%= offer.car.model %></span>
+                          </div>
+                        </div>
+                      </th>
+                      <td>
+                        <%= offer.created_at.strftime("%-d/%-m/%y: %H:%M %Z") %>
+                      </td>
+                      <td>
+                        <%= number_to_currency(offer.car.price, :unit => "P", precision: 0) %> PHP
+                      </td>
+                      <td>
+                        <%= number_to_currency(offer.offer_amount, :unit => "P", precision: 0) %> PHP
+                      </td>
+                      <td>
+                        <span class="badge badge-dot mr-1 text-black">
+                          <% if offer.status == "pending" %>
+                            <i class="bg-warning"></i> Pending
+                          <% elsif offer.status == "processing" %>
+                            <i class="bg-info"></i> Processing
+                          <% else %>
+                            <i class="bg-success"></i> Approved
+                          <% end %>
+                        </span>
+                      </td>
+                      <td class="text-capitalize">
+                      <%= offer.payment_type %>
+                      </td>
+                      <td class="text-capitalize">
+                      <%= offer.source_of_funds %>
+                      </td>
+                      <td>
+                        <%= offer.car.deadline %>
+                      </td>
+                      <td>
+                        <%= offer.car.plate_number %>
+                      </td>
+                      <td>
+                        <%= number_to_currency(offer.car.mileage, :unit => " ", precision: 0) %> KM
+                      </td>
+                      <td>
+                      <%= offer.car.warehouse %>
+                      </td>
+                      <td>
+                       <%= offer.note %>
+                      </td>
+                    <% end %>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <!-- Dark table -->
+      
+    </div>
+</section>

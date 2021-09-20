@@ -1,44 +1,44 @@
 <%= form_with(model: [@car, offer], local: true) do |form| %>
-  <div class="field">
+  <div class="form-group">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <label class="input-group-text" for="inputGroupSelect01">Payment Type: </label>
         </div>
-      <%= form.select :payment_type, ["cash", "installment"], class: "form-control w-10 custom-select", id: "inputGroupSelect01" %>
+      <%= form.select :payment_type, ["cash", "installment"], class: "form-control w-100 custom-select", id: "inputGroupSelect01" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :offer_amount %>
-    <%= form.number_field :offer_amount %>
+    <%= form.number_field :offer_amount, class: "form-control mb-3" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <label class="input-group-text" for="inputGroupSelect02">Source of funds: </label>
         </div>
-      <%= form.select :source_of_funds, ["savings/investments", "salary", "business income"], class: "form-control w-10 custom-select", id: "inputGroupSelect02" %>
+      <%= form.select :source_of_funds, ["savings/investments", "salary", "business income"], class: "form-control custom-select", id: "inputGroupSelect02" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :note %>
-    <%= form.text_field :note %>
+    <%= form.text_area :note, class: "form-control mb-3" %>
   </div>
 
   <% if current_user.issuperadmin? || current_user.isadmin? %>
-    <div class="field">
+    <div class="form-group">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect03">Status</label>
           </div>
-        <%= form.select :status, ["pending", "processing", "approved"], class: "form-control w-10 custom-select", id: "inputGroupSelect03" %>
+        <%= form.select :status, ["pending", "processing", "approved"], class: "form-control custom-select", id: "inputGroupSelect03" %>
     </div>
     <%= form.hidden_field :updated_by, value: current_user.id %>
     
-    <% if offer.inspect %>
-     <%= form.hidden_field :user_id, value: current_user.id %>
+    <% if offer.nil? %>
+     <%= form.hidden_field :user_id, value: @offer.user_id %>
     <% else %>
-      <%= form.hidden_field :user_id, value: offer.inspect %>
+      <%= form.hidden_field :user_id, value: @offer.user_id %>
     <% end %>
     <%= form.hidden_field :car_id, value: @car.id %>
   <% else %>
@@ -48,6 +48,9 @@
   <% end %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary text-white bg-purple" %>
   </div>
 <% end %>
+
+
+
