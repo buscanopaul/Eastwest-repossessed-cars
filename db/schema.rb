@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_14_091143) do
+ActiveRecord::Schema.define(version: 2021_09_20_123421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 2021_09_14_091143) do
     t.integer "type_id"
     t.text "image_data"
     t.boolean "featured", default: false
+    t.string "city"
+    t.string "region"
   end
 
   create_table "models", force: :cascade do |t|

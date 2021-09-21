@@ -6,6 +6,14 @@ class CarsController < ApplicationController
   # GET /cars or /cars.json
   def index
     @cars = Car.order(created_at: :desc)
+    @response = Faraday.get("http://ip-api.com/json")
+
+
+    @response_result = JSON.parse(@response.body)
+    @region = @response_result['regionName']
+    @city = @response_result['city']
+
+    @vehicles = Car.find_by(city: @city, region: @region)
   end
 
   # GET /cars/1 or /cars/1.json
@@ -75,6 +83,6 @@ class CarsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def car_params
-    params.require(:car).permit(:brand, :year, :model, :fuel, :plate_number, :color, :mileage, :price, :deadline, :warehouse, :user_id, :brand_id, :type_id, :image, :featured)
+    params.require(:car).permit(:brand, :year, :model, :fuel, :plate_number, :color, :mileage, :price, :deadline, :warehouse, :user_id, :brand_id, :type_id, :image, :featured, :city, :region)
   end
 end
