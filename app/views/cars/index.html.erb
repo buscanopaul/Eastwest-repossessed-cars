@@ -76,9 +76,9 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-    "></div>
+    "><%= link_to " ", car, class: "link-cars" %></div>
               <div class="card-body">
-                <h5 class="card-title"><%= car.year %> <%= car.brand.name %> <%= car.model %></h5>
+                <h5 class="card-title"><%= link_to " ", car, class: "link-cars" %><%= car.year %> <%= car.brand.name %> <%= car.model %></h5>
                 <p class="card-text">
                   <font><b>Price:</b> <%= number_to_currency(car.price, :unit => "P", precision: 0) %></font>
                   <font><b>Milage:</b> <%= number_to_currency(car.mileage, precision: 0, :unit => "") %> KM</font>

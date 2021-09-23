@@ -1,0 +1,47 @@
+<% if @cars == nil %>
+    <section id="carsTitle" class="car-not-found">
+        <h1>No Offers Found</h1>
+    </section>
+<% else %>
+    <section id="carsTitle">
+        <h1>Explore Cars Near Me</h1>
+        <p>We make owning a car easy and affordable. <br> Check out our high-quality used cars for sale.</p>
+    </section>
+    <section id="myLocation">
+        <h5><b>My current city:</b> <%= @city %></h5>
+        <h5><b>My current region:</b> <%= @region %></h5>
+    </section>
+   <section id="carsList">
+        <div class="container">
+            <div class="row">
+            <div class="d-flex justify-content-left bd-highlight mb-3 flex-wrap cars-container">
+                <% @cars.each do |car| %>
+                <div class="p-2 bd-highlight w-25 pre-card">
+                    <div class="card">
+                    <div class="cars-list-image" style="
+                background-image: url(<%= car.image_url %>);
+                height: 250px;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            "><%= link_to " ", car, class: "link-cars" %></div>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= link_to " ", car, class: "link-cars" %><%= car.year %> <%= car.brand.name %> <%= car.model %></h5>
+                        <p class="card-text">
+                        <font><b>Price:</b> <%= number_to_currency(car.price, :unit => "P", precision: 0) %></font>
+                        <font><b>Milage:</b> <%= number_to_currency(car.mileage, precision: 0, :unit => "") %> KM</font>
+                        <font><b>Fuel:</b> <%= car.fuel %></font> 
+                        </p>
+                        <%= link_to "Make Offer", car, class: "btn btn-primary text-white bg-purple" %>
+                    </div>
+                    </div>
+                </div>
+                <% end %>
+            
+            </div>
+            </div>
+        </div>
+    </section>
+<% end %>
+
+

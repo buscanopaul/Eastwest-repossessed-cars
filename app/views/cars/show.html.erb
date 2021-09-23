@@ -12,12 +12,14 @@
                 <p><b>Color: </b><%= @car.color %></p>
                 <p><b>Dealine: </b><%= @car.deadline %></p>
                 <p><b>Plate Number: </b><%= @car.plate_number %></p>
+                <p><b>City: </b><%= @car.city %></p>
               </div>
               <div class="col">
                 <p><b>Fuel: </b><%= @car.fuel %></p>
                 <p><b>Mileage: </b><%= number_to_currency(@car.mileage, precision: 0, :unit => "") %> KM</p>
                 <p><b>Type: </b><%= @car.type.name %></p>
                 <p><b>Warehouse: </b><%= @car.warehouse %></p>
+                <p><b>Region: </b><%= @car.region %></p>
               </div>
             </div>
 
