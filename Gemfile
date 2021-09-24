@@ -32,6 +32,7 @@ gem "shrine"
 gem "shrine-cloudinary", "~> 1.1"
 gem "image_processing", "~> 1.12", ">= 1.12.1"
 gem "jquery-slick-rails"
+gem "geocoder"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

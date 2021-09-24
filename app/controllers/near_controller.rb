@@ -8,5 +8,8 @@ class NearController < ApplicationController
     # @cars = Car.find_by(city: @city, region: @region)
     @cars = Car.where('city LIKE ?', "%#{@city}%").where('region LIKE ?', "%#{@region}%")
     
+
+    @cityTest = request.location.city
+    @regionTest = request.location.region
   end
 end
