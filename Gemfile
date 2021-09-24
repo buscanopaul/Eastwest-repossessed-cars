@@ -29,12 +29,14 @@ gem "faraday"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false
 gem "shrine"
+gem "shrine-cloudinary", "~> 1.1"
 gem "image_processing", "~> 1.12", ">= 1.12.1"
 gem "jquery-slick-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  gem 'dotenv-rails'
 end
 
 group :development do
