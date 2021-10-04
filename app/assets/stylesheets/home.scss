@@ -321,5 +321,25 @@ a:hover {
   }
 }
 
+footer {
+  background-color: #F8F9FA;
+  height: 150px;
+
+  p {
+    color: black;
+  }
+
+  a {
+    color: #542684 !important;
+  }
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    align-items: center;
+}
+
 
 
